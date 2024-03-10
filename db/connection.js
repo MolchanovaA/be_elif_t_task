@@ -4,6 +4,11 @@ const { Pool } = require("pg");
 //   throw new Error("PGDATABASE not set!");
 // }
 
-const pool = new Pool();
+const pool = new Pool({
+  user: "alina",
+  password: "nnn",
+  database: "drug_shops",
+  port: 5432,
+});
 
 module.exports = pool;
