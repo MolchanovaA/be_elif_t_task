@@ -38,6 +38,6 @@ exports.addtocart = (req, res, next) => {
 
 exports.showEndpoints = (req, res, next) => {
   receiveAllEndpoints().then((data) => {
-    res.status(200).send(data);
+    res.status(200).send(JSON.parse(data));
   });
 };
