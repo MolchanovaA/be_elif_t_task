@@ -2,8 +2,9 @@
   "name": "elif_t_task_be",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
+    "start": "node listen.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "PGPASSWORD=nnn PGDATABASE=drug_shops node db/seed/run-seed.js",
     "setup-dbs": "psql -f db/setup.sql"
