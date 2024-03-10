@@ -4,15 +4,15 @@ const format = require("pg-format");
 const seed = ({ drugsData, shopsData }) => {
   // Drop & create tables
   return db
-    .query(`DROP TABLE IF EXISTS shops;`)
+    .query(`DROP TABLE IF EXISTS shops CASCADE;`)
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS drugs;`);
+      return db.query(`DROP TABLE IF EXISTS drugs CASCADE;`);
     })
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS users;`);
+      return db.query(`DROP TABLE IF EXISTS users CASCADE;`);
     })
     .then(() => {
-      return db.query(`DROP TABLE IF EXISTS users_cart;`);
+      return db.query(`DROP TABLE IF EXISTS users_cart CASCADE;`);
     })
     .then(() => {
       return db.query(`
@@ -27,7 +27,8 @@ const seed = ({ drugsData, shopsData }) => {
         CREATE TABLE drugs (
           drug_id SERIAL PRIMARY KEY,
           drug_name VARCHAR(100),
-          drug_price INT,
+          price INT,
+          added DATE,
           store_id INT,
           FOREIGN KEY (store_id) REFERENCES shops(shop_id)
         );
@@ -36,7 +37,8 @@ const seed = ({ drugsData, shopsData }) => {
     .then(() => {
       return db.query(`
         CREATE TABLE users (
-          user_id SERIAL PRIMARY KEY
+          user_id SERIAL PRIMARY KEY,
+          name VARCHAR(100)
         );
       `);
     })
@@ -62,12 +64,13 @@ const seed = ({ drugsData, shopsData }) => {
     })
     .then(() => {
       // Insert drugs data
-      const drugsRows = drugsData.map(({ title, price, store_id }) => {
-        return [title, price, store_id];
+      const drugsRows = drugsData.map(({ title, price, date, store_id }) => {
+        return [title, price, date, store_id];
       });
+
       const drugsInsertQuery = format(
         `INSERT INTO drugs 
-          (drug_name, drug_price, store_id) 
+          (drug_name, price, added, store_id) 
         VALUES %L;`,
         drugsRows
       );

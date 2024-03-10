@@ -3,6 +3,8 @@ const express = require("express");
 const {
   getAll,
   getDrugsByShopId,
+  addtocart,
+  showEndpoints,
 } = require("./controllers/task.controllers.js");
 
 const {
@@ -16,8 +18,10 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", getAll);
-app.get("/shops/:shop_id", getDrugsByShopId);
+app.get("/", showEndpoints);
+app.get("/drugs", getAll);
+app.get("/drugs/:shop_id", getDrugsByShopId);
+app.post("/addtocart", addtocart);
 
 app.all("*", error_handler);
 
