@@ -10,4 +10,6 @@ how to start BE part of the project.
 - npm run seed (will add tables to databases and fill it with information provided in db folder )
 - node listen.js (will start server)
 
-for
+database has deployed on elephantSQL hosting
+API web service on : https://molchanova-drug-shop.onrender.com/
+github: https://github.com/MolchanovaA/be_elif_t_task
