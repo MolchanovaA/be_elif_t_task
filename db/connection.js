@@ -5,14 +5,10 @@ let config = {
   password: "nnn",
   database: "drug_shops",
   port: 5432,
-  connectionString: process.env.DATABASE_URL,
+  // connectionString: process.env.DATABASE_URL,
+  connectionString:
+    "postgres://yiufbthy:y7cqjTBjhJGez-EN05U3IshmHTGmzMiz@surus.db.elephantsql.com/yiufbthy",
 };
-
-const ENV = process.env.NODE_ENV || "development";
-// if (ENV === "production") {
-//   config.connectionString = process.env.DATABASE_URL;
-//   config.max = 2;
-// }
 
 const pool = new Pool(config);
 
