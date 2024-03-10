@@ -10,13 +10,15 @@ const { Pool } = require("pg");
 //     "postgres://yiufbthy:y7cqjTBjhJGez-EN05U3IshmHTGmzMiz@surus.db.elephantsql.com/yiufbthy",
 // };
 
-const config = {
-  user: "yiufbthy",
-  password: "y7cqjTBjhJGez-EN05U3IshmHTGmzMiz",
-  host: "surus.db.elephantsql.com",
-  port: 5432,
-  database: "yiufbthy",
-};
+// const config = {
+//   user: "yiufbthy",
+//   password: "y7cqjTBjhJGez-EN05U3IshmHTGmzMiz",
+//   host: "surus.db.elephantsql.com",
+//   port: 5432,
+//   database: "yiufbthy",
+// };
+
+const config = { connectionString: process.env.DATABASE_URL };
 
 const pool = new Pool(config);
 
