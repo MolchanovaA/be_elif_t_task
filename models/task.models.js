@@ -3,7 +3,7 @@ const db = require("../db/connection");
 const fs = require("fs/promises");
 
 exports.receiveAll = ({ sortby, order }) => {
-  const allowed_sorting_opt = ["date", "price"];
+  const allowed_sorting_opt = ["added", "price"];
   const allowedOrder = ["asc", "desc"];
 
   let queryStr = `SELECT * FROM drugs `;
